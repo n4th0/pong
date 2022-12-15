@@ -17,11 +17,19 @@ public class Pelota {
         return new Rectangle2D.Double(x, y, ancho, largo);
     }
 
-    public void mover(Rectangle limites) {
+    public void mover(Rectangle limites,boolean colisionR1, boolean colisionR2) {
         ///le das los valores para que  no se salga derecha, arriba, abajo iz
         ///izquierda
         x+=dx;
         y+=dy;
+        if(colisionR1){
+            dx=-dx;
+            x=25;
+        }
+        if(colisionR2){
+            dx=-dx;
+            x=755;
+        }
         if (x>=limites.getMaxX()){
             dx=-dx;
         }
