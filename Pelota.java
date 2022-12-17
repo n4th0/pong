@@ -8,7 +8,7 @@ public class Pelota {
     private int ancho=15, largo=15;
     private int x=1;
     private int y=1;
-    private int dx=1, dy=1;
+    private int dx, dy;
     private Integer puntuaje1=0, puntuaje2=0;
     public static boolean finJuego = false; 
     public Pelota(int x, int y){
