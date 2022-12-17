@@ -6,15 +6,19 @@ import java.lang.Math;
 
 public class Pelota {
     private int ancho=15, largo=15;
-    private int x=1;
-    private int y=1;
-    private int dx, dy;
+    private int x;
+    private int y;
+    private int dx=2, dy=2;
     private Integer puntuaje1=0, puntuaje2=0;
     public static boolean finJuego = false; 
+    
+    
     public Pelota(int x, int y){
         this.x=x;
         this.y=y;
     }
+    
+    
     public Rectangle2D getPelota(){
         ///las caracteristicas de la pelota
         return new Rectangle2D.Double(x, y, ancho, largo);
@@ -25,6 +29,7 @@ public class Pelota {
         ///izquierda
         x+=dx;
         y+=dy;
+        ///colisiones con raquetas
         if(colisionR1){
             dx=-dx;
             x=25;
@@ -33,6 +38,7 @@ public class Pelota {
             dx=-dx;
             x=755;
         }
+        ///colisiones con las porterías
 
         if(x < limites.getMinX()){
             puntuaje2++;
@@ -46,6 +52,7 @@ public class Pelota {
             y=(int) limites.getCenterY();
             dx= -dx; 
         }
+        ///colisiones con las paredes arriba y abajo
         if(y < limites.getMinY()) {
             y = (int) limites.getMinY();
             dy = -dy;
@@ -54,8 +61,14 @@ public class Pelota {
             y = (int) (limites.getMaxY()-largo);
             dy= -dy;    
         }
+        if(finJuego){
+            dx=0;
+            dy=0;
+        }
     }
 
+
+    ///funciones para obtener el puntuaje
     public int getScore1(){
         return puntuaje1;
     }

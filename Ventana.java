@@ -12,17 +12,17 @@ public class Ventana extends JFrame{
      * 
      */
     public Ventana(){
-        setTitle("pong");
-        setSize(ancho, largo);
-        setLocationRelativeTo(null);
-        setResizable(false);
-        lamina = new TableroJuego();
-        add(lamina);
-        addKeyListener(new EventoTeclado());
+        setTitle("pong");///titulo de la ventana
+        setSize(ancho, largo);///los tamaños de la ventana
+        setLocationRelativeTo(null);///la localización de la ventana es relativa
+        setResizable(false);///no se puede modificar su tamaño
+        lamina = new TableroJuego();///se crea la lamina (clase tablero juego)
+        add(lamina);///se añade la lamina encima de la ventana
+        addKeyListener(new EventoTeclado());///se empieza a leer el teclado
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        hilo = new Hilo(lamina);
-        hilo.start();
+        hilo = new Hilo(lamina);///motor del juego
+        hilo.start();///se inicia el hilo
 
     }
     

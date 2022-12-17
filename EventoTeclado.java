@@ -12,7 +12,7 @@ public class EventoTeclado extends KeyAdapter {
 
     static boolean w, s, up, down;
 
-    
+    ///si la pulsas toma el valor de true    
     public void keyPressed(KeyEvent e) {
 
         int id = e.getKeyCode();
@@ -30,7 +30,7 @@ public class EventoTeclado extends KeyAdapter {
             down = true;
         }
     }
-
+    ///si lo dejas de pulsar toma el valor false
   
     public void keyReleased(KeyEvent e) {
 

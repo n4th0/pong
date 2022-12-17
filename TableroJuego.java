@@ -22,14 +22,18 @@ import java.awt.geom.Rectangle2D;
  */
 public class TableroJuego extends JPanel {
 
+    ///creación de los objetos pelota, raqueta1 y raqueta2
     Pelota pelota = new Pelota(0, 0);
     Raqueta r1 = new Raqueta(10, 200);
     Raqueta r2 = new Raqueta(794 - 10 - Raqueta.ancho, 200);
 
+
+    ///color a la lamina 
     public TableroJuego() {
         setBackground(Color.BLACK);
     }
 
+    ///sobreescrito, se pintan los objetos creados y se actializan    
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -41,19 +45,21 @@ public class TableroJuego extends JPanel {
 
     }
 
+    ///dibujar la pelota y las raquetas
     public void dibujar(Graphics2D g) {
         g.fill(pelota.getPelota());
         g.fill(r1.getRaqueta());
         g.fill(r2.getRaqueta());
     }
 
+    ///actualizar según el movimiento de los objetos
     public void actualizar() {
         pelota.mover(getBounds(), colision(r1.getRaqueta()), colision(r2.getRaqueta()));
         r1.moverR1(getBounds());
         r2.moverR2(getBounds());
     }
     
-
+    ///iterar el juego 
     public void iterarJuego() {
         while (true) {
             try {
@@ -64,9 +70,12 @@ public class TableroJuego extends JPanel {
             }
         }
     }
+    /// comprobar si intersectan com el metodo colision 
     private boolean colision(Rectangle2D r){
         return pelota.getPelota().intersects(r);
     }
+
+    /// dibujar el puntuaje
     private void dibujarPuntuaje(Graphics2D g){
         Graphics2D g1=g, g2=g;
 
@@ -75,11 +84,11 @@ public class TableroJuego extends JPanel {
         g1.drawString(Integer.toString(pelota.getScore1()), (float) getBounds().getCenterX() - 50, 30);
         g2.drawString(Integer.toString(pelota.getScore2()), (float) getBounds().getCenterX() + 25, 30);
         if(pelota.getScore1() == 5){
-            g.drawString("Ganó el jugador 1", (float) getBounds().getCenterX()-150, (float) getBounds().getCenterY()-100);
+            g.drawString("Ha ganado el jugador 1", (float) getBounds().getCenterX()-150, (float) getBounds().getCenterY()-100);
             Pelota.finJuego = true;
         }
         if(pelota.getScore2()== 5){
-            g.drawString("Ganó el jugador 2", (float) getBounds().getCenterX()-150, (float) getBounds().getCenterY()-100);
+            g.drawString("Ha ganado el jugador 2", (float) getBounds().getCenterX()-150, (float) getBounds().getCenterY()-100);
             Pelota.finJuego = true;
         }
     }
